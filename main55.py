@@ -1,4 +1,33 @@
-def calculatrice():
+def menu():
+    print('\n')
+    print("Choice 1: Perform Calculation")
+    print("Choice 2: Show history")
+    print("Choice 3: Delete history")
+    print("Choice 4: Exit")
+
+
+def calculator():
+    history = []
+
+    while True:
+        menu()
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            calculatrice(history)
+        elif choice == '2':
+            show_history(history)
+        elif choice == '3':
+            delete_history(history)
+        elif choice == '4':
+            print("Exiting the calculator. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+
+
+def calculatrice(history):
     try:
         expression = input("Entrez une expression mathématique : ")
 
@@ -9,6 +38,7 @@ def calculatrice():
         resultat = evaluer_expression(expression)
 
         # Afficher le résultat
+        history.append(f"le resultat de l'expression {expression} est égal à {resultat}")
         print(f"Le résultat de l'expression {expression} est égal à {resultat}")
 
     except ValueError:
@@ -96,4 +126,15 @@ def extraire_sous_expression(expression, index):
 
     return sous_expression, index
 
-calculatrice()
+
+def show_history(history):
+    print("\nCalculation history:")
+    for calc in history:
+        print(calc)
+
+
+def delete_history(history):
+    history.clear()
+    print("Calculation history has been deleted.")
+    
+calculator()
